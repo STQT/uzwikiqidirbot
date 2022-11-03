@@ -1,7 +1,7 @@
 import hashlib
 
 from aiogram import Bot, Dispatcher, executor
-from aiogram.types import InlineQuery, InputTextMessageContent, InlineQueryResultArticle
+from aiogram.types import InlineQuery, InputTextMessageContent, InlineQueryResultArticle, Message
 
 from configs import BOT_TOKEN
 from contrib import WikiApi
@@ -13,6 +13,12 @@ wiki = WikiApi()
 bot = Bot(token=API_TOKEN)
 
 dp = Dispatcher(bot)
+
+
+@dp.message_handler(commands=["start"])
+async def start_command(message: Message):
+    return await message.answer("Siz botdan foydalanishingiz mumkin!\n"
+                                "Yaratuvchi: @kaireke_sultan")
 
 
 @dp.inline_handler()
