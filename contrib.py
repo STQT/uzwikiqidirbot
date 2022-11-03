@@ -11,7 +11,6 @@ load_dotenv()
 
 async def async_response(session: aiohttp.ClientSession, url: str, params: dict):
     async with session.get(url, params=params) as resp:
-        print("@@@@@@@@@@@@@@@@@", resp.url)
         pokemon = await resp.json()
         return pokemon
 
