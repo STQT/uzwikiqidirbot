@@ -3,6 +3,7 @@ import hashlib
 from aiogram import Bot, Dispatcher, executor
 from aiogram.types import InlineQuery, InputTextMessageContent, InlineQueryResultArticle, Message
 from urllib.parse import quote
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from configs import BOT_TOKEN
 from contrib import WikiApi
@@ -21,8 +22,10 @@ help_text = ("Botdan foydalanish uchun @uzwikiqidirbot deb yozib "
 
 @dp.message_handler(commands=["start"])
 async def start_command(message: Message):
+    kb = InlineKeyboardMarkup()
+    kb.add(InlineKeyboardButton(switch_inline_query="Vikipediya", text="Qidirib ko'rish"))
     return await message.answer("Siz botdan foydalanishingiz mumkin!\n"
-                                "Yaratuvchi: @kaireke_sultan")
+                                "Yaratuvchi: @kaireke_sultan", reply_markup=kb)
 
 
 @dp.message_handler()
